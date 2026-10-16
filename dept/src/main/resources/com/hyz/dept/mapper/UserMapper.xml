@@ -18,21 +18,21 @@
     <!-- 查询所有用户 -->
     <select id="selectAll" resultMap="UserResultMap">
         SELECT <include refid="Base_Column_List"/>
-        FROM `user`
+        FROM `t_user`
         ORDER BY id
     </select>
 
     <!-- 根据主键查询 -->
     <select id="selectById" parameterType="java.lang.Integer" resultMap="UserResultMap">
         SELECT <include refid="Base_Column_List"/>
-        FROM `user`
+        FROM `t_user`
         WHERE id = #{id}
     </select>
 
     <!-- 根据用户名查询（登录校验可用） -->
     <select id="selectByUsername" parameterType="java.lang.String" resultMap="UserResultMap">
         SELECT <include refid="Base_Column_List"/>
-        FROM `user`
+        FROM `t_user`
         WHERE username = #{username}
         LIMIT 1
     </select>
