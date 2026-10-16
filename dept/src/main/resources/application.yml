@@ -11,7 +11,7 @@ spring:
 
 mybatis:
   # mapper xml文件位置
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: com/hyz/dept/mapper/*.xml
   # 实体类别名包
   type-aliases-package: com.hyz.dept.entity
   configuration:
