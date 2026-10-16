@@ -1,0 +1,14 @@
+# IDEA 本地配置，不需要提交
+.idea/
+*.iml
+
+# Maven编译输出目录，整包忽略
+dept/target/
+
+# 日志文件
+*.log
+
+# Windows系统文件
+Thumbs.db
+# Mac系统文件
+.DS_Store

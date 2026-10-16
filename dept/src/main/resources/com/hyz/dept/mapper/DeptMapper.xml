@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyz.dept.mapper.DeptMapper">
+
+    <!-- 结果映射：数据库列 <-> 实体属性 -->
+    <resultMap id="DeptResultMap" type="com.hyz.dept.entity.Dept">
+        <id property="deptno" column="deptno"/>
+        <result property="dname" column="dname"/>
+        <result property="loc" column="loc"/>
+    </resultMap>
+
+    <!-- 公共列清单 -->
+    <sql id="Base_Column_List">
+        deptno, dname, loc
+    </sql>
+
+    <!-- 查询所有部门 -->
+    <select id="selectAll" resultMap="DeptResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM dept
+        ORDER BY deptno
+    </select>
+
+    <!-- 根据部门编号查询 -->
+    <select id="selectByDeptno" parameterType="java.lang.Integer" resultMap="DeptResultMap">
+        SELECT <include refid="Base_Column_List"/>
+        FROM dept
+        WHERE deptno = #{deptno}
+    </select>
+    <!--获取最大部门编号-->
+    <select id="selectMaxDeptno" resultType="java.lang.Integer">
+        SELECT MAX(deptno) FROM dept
+    </select>
+
+    <!-- 新增部门（主键由数据库自增/序列生成时写回） -->
+    <insert id="insert" parameterType="com.hyz.dept.entity.Dept">
+        INSERT INTO dept (deptno, dname, loc)
+        VALUES (#{deptno}, #{dname}, #{loc})
+    </insert>
+
+    <!-- 根据部门编号修改 -->
+    <update id="updateByDeptno" parameterType="com.hyz.dept.entity.Dept">
+        UPDATE dept
+        SET dname = #{dname},
+            loc   = #{loc}
+        WHERE deptno = #{deptno}
+    </update>
+
+    <!-- 根据部门编号删除 -->
+    <delete id="deleteByDeptno" parameterType="java.lang.Integer">
+        DELETE FROM dept
+        WHERE deptno = #{deptno}
+    </delete>
+
+</mapper>
