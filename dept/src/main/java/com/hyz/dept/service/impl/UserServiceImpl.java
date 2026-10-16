@@ -26,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void register(User user) {
+        if (userMapper.selectByUsername(user.getUsername()) != null) {
+            throw new RuntimeException("用户名已存在");
+        }
         user.setPassword(DigestUtils.md5DigestAsHex(
                 user.getPassword().getBytes(StandardCharsets.UTF_8)));
         userMapper.insert(user);
