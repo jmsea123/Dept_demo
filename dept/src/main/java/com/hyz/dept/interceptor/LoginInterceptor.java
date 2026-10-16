@@ -5,6 +5,7 @@ import com.hyz.dept.common.ResultEnum;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import tools.jackson.databind.ObjectMapper;
@@ -12,7 +13,8 @@ import tools.jackson.databind.ObjectMapper;
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
     // Jackson序列化工具，把R对象转为JSON字符串返回前端
-    private final ObjectMapper om = new ObjectMapper();
+    @Autowired
+    private ObjectMapper om;
     @Override
     public boolean preHandle(HttpServletRequest req, HttpServletResponse resp, Object handler)
             throws Exception {
